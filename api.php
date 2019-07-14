@@ -15,6 +15,7 @@ if (mysqli_connect_errno()) {
 mysqli_set_charset($mysql, 'utf8');
 
 include ('search.php');
+include ('convert_to_json.php');
 
 // switch by method
 switch ($method) {
@@ -22,6 +23,7 @@ case 'GET':
     // search
     $words = explode(' ', $_GET['line']);
     $result = searchProducts($mysql, $words);
+    $response = convert2Json($result);
     break;
 
 case 'POST':
