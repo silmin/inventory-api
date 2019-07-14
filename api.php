@@ -4,22 +4,32 @@ $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 $input = json_decode(file_get_contents('php://input'), true);
 
-
 // connect to database
 include ('dbdata.php');
 
 $mysql = mysqli_connect($hostname, $username, $password, $dbname);
+if (mysqli_connect_errno()) {
+    printf("Connect faild: %s\n", $mysql->connect_errno);
+    exit();
+}
 mysqli_set_charset($mysql, 'utf8');
 
+include ('search.php');
 
-// create sql
+// switch by method
 switch ($method) {
 case 'GET':
+    // search
+    $words = explode(' ', $_GET['line']);
+    $result = searchProducts($mysql, $words);
     break;
+
 case 'POST':
     break;
+
 case 'PUT':
     break;
+
 case 'DELETE':
     break;
 }
