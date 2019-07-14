@@ -15,6 +15,7 @@ if (mysqli_connect_errno()) {
 mysqli_set_charset($mysql, 'utf8');
 
 include ('search.php');
+include ('allindex.php');
 include ('convert_to_json.php');
 
 // switch by method
@@ -25,9 +26,9 @@ case 'GET':
         $words = explode(' ', $_GET['line']);
         $result = searchProducts($mysql, $words);
         $response = convert2Json($result);
-        echo $response;
     } else {
-
+        $result = indexProducts($mysql);
+        $response = convert2Json($result);
     }
     break;
 
@@ -40,5 +41,7 @@ case 'PUT':
 case 'DELETE':
     break;
 }
+
+echo $response;
 
 ?>
