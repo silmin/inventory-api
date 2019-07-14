@@ -1,6 +1,6 @@
 <?php
 function convert2Json($result) {
-    if ($result === false) return false;
+    if ($result === false) return "Fail";
 
     $res = array();
     while ($row = mysqli_fetch_assoc($result)) {

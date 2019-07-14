@@ -20,10 +20,15 @@ include ('convert_to_json.php');
 // switch by method
 switch ($method) {
 case 'GET':
-    // search
-    $words = explode(' ', $_GET['line']);
-    $result = searchProducts($mysql, $words);
-    $response = convert2Json($result);
+    if (isset($_GET['line'])) {
+        // search
+        $words = explode(' ', $_GET['line']);
+        $result = searchProducts($mysql, $words);
+        $response = convert2Json($result);
+        echo $response;
+    } else {
+
+    }
     break;
 
 case 'POST':
