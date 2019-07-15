@@ -20,6 +20,7 @@ include ('search.php');
 include ('allindex.php');
 include ('get.php');
 include ('insert.php');
+include ('update.php');
 include ('convert_to_json.php');
 include ('isJudge.php');
 
@@ -52,6 +53,9 @@ case 'POST':
     break;
 
 case 'PUT':
+    $result = updateProduct($mysql, $input);
+    if ($result) $response = 'Accept.';
+    else $response = 'Fail: ' . mysqli_error($mysql);
     break;
 
 case 'DELETE':

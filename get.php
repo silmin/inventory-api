@@ -1,5 +1,6 @@
 <?php
 function getProduct($mysql, $id) {
+
     // make query
     $pi = "SELECT products.productID, shopID, title, description, price
             FROM products";
