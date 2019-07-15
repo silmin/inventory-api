@@ -16,15 +16,24 @@ mysqli_set_charset($mysql, 'utf8');
 
 include ('search.php');
 include ('allindex.php');
+include ('get.php');
 include ('convert_to_json.php');
+include ('isJudge.php');
+
 
 // switch by method
 switch ($method) {
 case 'GET':
+    if (isset($request)) $id = intval($request[0]);
+
     if (isset($_GET['line'])) {
         // search
         $words = explode(' ', $_GET['line']);
         $result = searchProducts($mysql, $words);
+        $response = convert2Json($result);
+    } else if (isId($id)) {
+        // get a product
+        $result = getProduct($mysql, $id);
         $response = convert2Json($result);
     } else {
         // index
