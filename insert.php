@@ -17,6 +17,7 @@ function insertProduct($mysql, $data) {
 
     $query = sprintf($format, $column, $value);
 
+    // excute query
     $result = mysqli_query($mysql, $query);
 
     return $result;

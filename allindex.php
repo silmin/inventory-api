@@ -10,10 +10,9 @@ function indexProducts($mysql) {
     
     // todo: join images table
 
-    echo $query;
    
+    // excute query
     $result = mysqli_query($mysql, $query);
-    echo mysqli_error($mysql);
 
     return $result;
 }

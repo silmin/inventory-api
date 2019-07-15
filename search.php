@@ -20,10 +20,8 @@ function searchProducts($mysql, $words) {
         }
     }
 
-    echo $query;
-    
+    // excute query
     $result = mysqli_query($mysql, $query);
-    echo mysqli_error($mysql);
 
     return $result;
 }

@@ -35,31 +35,33 @@ case 'GET':
         // search
         $words = explode(' ', $_GET['line']);
         $result = searchProducts($mysql, $words);
-        $response = convert2Json($result);
     } else if (isId($id)) {
         // get a product
         $result = getProduct($mysql, $id);
-        $response = convert2Json($result);
     } else {
         // index
         $result = indexProducts($mysql);
-        $response = convert2Json($result);
     }
+    if ($result) $response = convert2Json($result);
+    else $response = 'Fail: ' . mysqli_error($mysql);
     break;
 
 case 'POST':
+    // insert
     $result = insertProduct($mysql, $input);
     if ($result) $response = 'Accept.';
     else $response = 'Fail: ' . mysqli_error($mysql);
     break;
 
 case 'PUT':
+    // update
     $result = updateProduct($mysql, $input);
     if ($result) $response = 'Accept.';
     else $response = 'Fail: ' . mysqli_error($mysql);
     break;
 
 case 'DELETE':
+    // delete
     $result = deleteProduct($mysql, $input['productID']);
     if ($result) $response = 'Accept.';
     else $response = 'Fail: ' . mysqli_error($mysql);

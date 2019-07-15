@@ -14,6 +14,7 @@ function updateProduct($mysql, $data) {
 
     $query .= "WHERE productID = ${data['productID']};";
 
+    // excute query
     $result = mysqli_query($mysql, $query);
 
     return $result;

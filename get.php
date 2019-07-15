@@ -8,6 +8,7 @@ function getProduct($mysql, $id) {
     $query = "SELECT *, shops.name FROM ($pi) as PI, shops
                 WHERE PI.shopID = shops.shopID AND productID = $id";
 
+    // excute query
     $result = mysqli_query($mysql, $query);
     echo mysqli_error($mysql);
 
