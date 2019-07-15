@@ -27,6 +27,7 @@ case 'GET':
         $result = searchProducts($mysql, $words);
         $response = convert2Json($result);
     } else {
+        // index
         $result = indexProducts($mysql);
         $response = convert2Json($result);
     }
