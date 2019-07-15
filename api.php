@@ -21,6 +21,7 @@ include ('allindex.php');
 include ('get.php');
 include ('insert.php');
 include ('update.php');
+include ('delete.php');
 include ('convert_to_json.php');
 include ('isJudge.php');
 
@@ -59,6 +60,9 @@ case 'PUT':
     break;
 
 case 'DELETE':
+    $result = deleteProduct($mysql, $input['productID']);
+    if ($result) $response = 'Accept.';
+    else $response = 'Fail: ' . mysqli_error($mysql);
     break;
 }
 
