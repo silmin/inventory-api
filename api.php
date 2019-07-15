@@ -4,6 +4,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 $input = json_decode(file_get_contents('php://input'), true);
 
+
 // connect to database
 include ('dbdata.php');
 
@@ -14,9 +15,11 @@ if (mysqli_connect_errno()) {
 }
 mysqli_set_charset($mysql, 'utf8');
 
+
 include ('search.php');
 include ('allindex.php');
 include ('get.php');
+include ('insert.php');
 include ('convert_to_json.php');
 include ('isJudge.php');
 
@@ -43,6 +46,9 @@ case 'GET':
     break;
 
 case 'POST':
+    $result = insertProduct($mysql, $input);
+    if ($result) $response = 'Accept.';
+    else $response = 'Fail: ' . mysqli_error($mysql);
     break;
 
 case 'PUT':
