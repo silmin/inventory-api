@@ -18,6 +18,7 @@ mysqli_set_charset($mysql, 'utf8');
 
 include ('search.php');
 include ('allindex.php');
+include ('shopIndex.php');
 include ('get.php');
 include ('insert.php');
 include ('update.php');
@@ -31,16 +32,25 @@ switch ($method) {
 case 'GET':
     if (isset($request)) $id = intval($request[0]);
 
-    if (isset($_GET['line'])) {
+    if (isset($_GET['line']) && $request[0] === "search") {
         // search
         $words = explode(' ', $_GET['line']);
         $result = searchProducts($mysql, $words);
+        echo "search";
     } else if (isId($id)) {
         // get a product
         $result = getProduct($mysql, $id);
+        echo "get";
     } else {
-        // index
-        $result = indexProducts($mysql);
+        if ($request[0] === "shop") {
+            // shop index
+            $result = indexShops($mysql);
+            echo "shop index";
+        } else {
+            // index
+            $result = indexProducts($mysql);
+            echo "index";
+        }
     }
     if ($result) $response = convert2Json($result);
     else $response = 'Fail: ' . mysqli_error($mysql);
