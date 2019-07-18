@@ -1,5 +1,5 @@
 var getProducts = $(function() {
-    $.get("localhost:8000/api.php/", function(data) {
+    $.get("https://silmin-inventory.herokuapp.com/api.php/", function(data) {
         console.log(data);
     });
 });
