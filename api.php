@@ -36,20 +36,16 @@ case 'GET':
         // search
         $words = explode(' ', $_GET['line']);
         $result = searchProducts($mysql, $words);
-        echo "search";
     } else if (isId($id)) {
         // get a product
         $result = getProduct($mysql, $id);
-        echo "get";
     } else {
         if ($request[0] === "shop") {
             // shop index
             $result = indexShops($mysql);
-            echo "shop index";
         } else {
             // index
             $result = indexProducts($mysql);
-            echo "index";
         }
     }
     if ($result) $response = convert2Json($result);
