@@ -2,6 +2,8 @@ function reflectProducts(json) {
     console.log("reflect");
     console.log(json);
 
+    $('.uk-flex div').remove();
+
     for(let i = 0;i < json.length;i++) {
         let id = json[i]['productID'];
         let title = json[i]['title'];

@@ -3,13 +3,18 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="./view/reflectProducts.js"></script>
-    <script src="./view/getProducts.js"></script>
+    <script src="./view/indexProduct.js"></script>
+    <script src="./view/searchProducts.js"></script>
     <script src="./view/onload.js"></script>
     <title>Inventory API View</title>
     </head>
     <body>
-        <div>
+        <div class="uk-margin-left">
             <h2>Products</h2>
+        </div>
+        <div class="uk-margin-left uk-margin-right uk-margin-bottom">
+            <input id="search" class="uk-input uk-width-1-2" type="text" placeholder="search title ...">
+            <button class="uk-button uk-button-default" onclick="searchProducts()">Search</button>
         </div>
         <div class="uk-flex uk-flex-column">
         </div>
